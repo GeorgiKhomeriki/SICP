@@ -5,14 +5,17 @@
        (pascal x (- y 1)))))
 
 (define (print-pascal n)
-  (define (iter x y)
+  (define (iter-col x y)
     (if (<= x y)
       (begin
         (display (pascal x y))
-        (iter (+ x 1) y))))
-    (if (> n 0)
+        (display " ")
+        (iter-col (+ x 1) y))))
+  (define (iter-row n y)
+    (if (>= n y)
       (begin
-        (iter 1 n)
+        (iter-col 1 y)
         (newline)
-        (print-pascal (- n 1)))))
-    
+        (iter-row n (+ y 1)))))
+  (iter-row n 1))
+ 
